@@ -64,5 +64,33 @@ const updateLocalStorage = () => {
     })
   );
 };
+const loadInitialData = () => {
+    const localStorageCopy = JSON.parse(localStorage.task);
+  
+    if (localStorageCopy) state.taskList = localStorageCopy.tasks;
+  
+    state.taskList.map((cardDate) => {
+      taskContents.insertAdjacentHTML("beforeend", htmlTaskContent(cardDate));
+    });
+  };
+  
 
-// Load Initial Data
+  const handleSubmit = (event) => {
+    // console.log("event triggerd");
+    const id = `${Date.now()}`;
+    const input = {
+      url: document.getElementById("imageUrl").value,
+      title: document.getElementById("taskTitle").value,
+      type: document.getElementById("tags").value,
+      description: document.getElementById("taskDescription").value,
+    };
+
+    taskContents.insertAdjacentHTML(
+        "beforeend",
+        htmlTaskContent({ ...input, id })
+      );
+      state.taskList.push({ ...input, id });
+    
+      updateLocalStorage();
+    };
+    
