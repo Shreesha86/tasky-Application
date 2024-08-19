@@ -93,4 +93,35 @@ const loadInitialData = () => {
     
       updateLocalStorage();
     };
-    
+    //open task
+const openTask = (e) => {
+  if (!e) e = window.event;
+
+  const getTask = state.taskList.find(({ id }) => id === e.target.id);
+  taskModal.innerHTML = htmlModalContent(getTask);
+};
+
+// delete task
+const deleteTask = (e) => {
+  if (!e) e = window.event;
+
+  const targetId = e.target.getAttribute("name");
+  // console.log(targetId);
+  const type = e.target.tagName;
+  // console.log(type);
+  const removeTask = state.taskList.filter(({ id }) => id !== targetId);
+  // console.log(removeTask);
+  updateLocalStorage();
+
+  if (type === "BUTTON") {
+    // console.log(e.target.parentNode.parentNode.parentNode.parentNode);
+    return e.target.parentNode.parentNode.parentNode.parentNode.removeChild(
+      e.target.parentNode.parentNode.parentNode
+    );
+  } else if (type === "I") {
+    return e.target.parentNode.parentNode.parentNode.parentNode.parentNode.removeChild(
+      e.target.parentNode.parentNode.parentNode.parentNode
+    );
+  }
+};
+
