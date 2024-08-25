@@ -10,7 +10,7 @@ const taskModal = document.querySelector(".task__modal__body");
 
 //Template for the card on screen
 //element identifier key=
-const htmlTaskContent = ({ id, title, description, type, url }) => `
+const htmlTaskContent = ({ id, title, description, type, url }) =>` 
   <div class="col-md-6 col-lg-4 mt-3" id=${id} key=${id}>
       <div class="card shadow-sm task__card">
           <div class="card-header d-flex justify-content-end task__card__header">
